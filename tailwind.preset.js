@@ -3,7 +3,31 @@
  * Nel tailwind.config del progetto: import divisa from "divisa/tailwind" e poi presets: [divisa].
  * I font arrivano dalle variabili CSS --font-display, --font-body e --font-mono, da definire con next/font.
  */
+import plugin from "tailwindcss/plugin.js";
+
+/**
+ * Componenti di Divisa. Stanno in un plugin, e non in un file CSS con @apply,
+ * perché Next elabora ogni file CSS importato da solo e non troverebbe le direttive di Tailwind.
+ */
+const componenti = plugin(({ addComponents }) => {
+  addComponents({
+    ".card": { "@apply rounded-xl border border-line bg-paper shadow-card": {} },
+    ".btn": { "@apply inline-flex items-center justify-center gap-2 rounded-lg bg-lime px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-ink transition hover:bg-lime2 hover:shadow-glow active:scale-[.98] disabled:opacity-40 disabled:hover:shadow-none": {} },
+    ".btn-ghost": { "@apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel/60 px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-cream transition hover:border-lime hover:text-lime": {} },
+    ".odds-btn": { "@apply flex flex-1 flex-col items-center justify-center gap-0.5 rounded-lg border border-line bg-ink px-3 py-3 text-cream transition": {} },
+    ".odds-btn:disabled": { "@apply text-cream": {} },
+    ".odds-btn:not(:disabled):hover": { "@apply border-lime/60 bg-panel": {} },
+    ".odds-btn[aria-pressed=\"true\"], .odds-btn[aria-pressed=\"true\"]:not(:disabled):hover": { "@apply border-lime bg-lime text-ink shadow-glow": {} },
+    ".odds-btn[aria-pressed=\"true\"] .odds-label": { "@apply text-ink/70": {} },
+    ".live-dot": { "@apply inline-block h-2 w-2 animate-pulseDot rounded-full bg-lime": {} },
+    ".eyebrow": { "@apply font-mono text-xs font-semibold uppercase tracking-[3px] text-lime": {} },
+    ".field": { "@apply w-full rounded border border-line bg-ink px-4 py-3 text-cream outline-none focus:border-lime": {} },
+    ".label": { "@apply font-mono text-xs uppercase tracking-wide text-muted": {} },
+  });
+});
+
 export default {
+  plugins: [componenti],
   theme: {
     extend: {
       colors: {

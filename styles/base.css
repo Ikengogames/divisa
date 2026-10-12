@@ -42,49 +42,6 @@ textarea {
   font-variant-numeric: tabular-nums;
 }
 
-@layer components {
-  /* Superficie standard */
-  .card {
-    @apply rounded-xl border border-line bg-paper shadow-card;
-  }
-
-  /* Bottone primario: lime pieno, testo scuro */
-  .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-lime px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-ink transition hover:bg-lime2 hover:shadow-glow active:scale-[.98] disabled:opacity-40 disabled:hover:shadow-none;
-  }
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel/60 px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-cream transition hover:border-lime hover:text-lime;
-  }
-
-  /* Pulsante quota stile sportsbook */
-  .odds-btn {
-    @apply flex flex-1 flex-col items-center justify-center gap-0.5 rounded-lg border border-line bg-ink px-3 py-3 transition;
-  }
-  .odds-btn,
-  .odds-btn:disabled {
-    @apply text-cream;
-  }
-  .odds-btn:not(:disabled):hover {
-    @apply border-lime/60 bg-panel;
-  }
-  .odds-btn[aria-pressed="true"],
-  .odds-btn[aria-pressed="true"]:not(:disabled):hover {
-    @apply border-lime bg-lime text-ink shadow-glow;
-  }
-  .odds-btn[aria-pressed="true"] .odds-label {
-    @apply text-ink/70;
-  }
-
-  /* Pillola "live" */
-  .live-dot {
-    @apply inline-block h-2 w-2 animate-pulseDot rounded-full bg-lime;
-  }
-
-  /* Etichetta di sezione */
-  .eyebrow {
-    @apply font-mono text-xs font-semibold uppercase tracking-[3px] text-lime;
-  }
-}
 
 /* ------------------------------------------------------------------ animazioni */
 @keyframes rise {
@@ -260,8 +217,6 @@ label:has(input.sr-only:focus-visible) { outline: 2px solid #c8ff2e; outline-off
 .timer-hot { color: #ff4d5e; animation: tick 1s ease-in-out infinite; }
 
 /* Campi dei moduli */
-.field { @apply w-full rounded border border-line bg-ink px-4 py-3 text-cream outline-none focus:border-lime; }
-.label { @apply font-mono text-xs uppercase tracking-wide text-muted; }
 
 /* ------------------------------------------------------------------ badge */
 /* Badge colorato: la tinta arriva da --badge, impostata da una classe badge-* */

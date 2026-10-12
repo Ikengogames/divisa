@@ -497,39 +497,6 @@ label:has(input.sr-only:focus-visible) {
 
 /* Campi dei moduli */
 
-.field {
-  width: 100%;
-  border-radius: 0.25rem;
-  border-width: 1px;
-  --tw-border-opacity: 1;
-  border-color: rgb(34 43 64 / var(--tw-border-opacity, 1));
-  --tw-bg-opacity: 1;
-  background-color: rgb(5 7 13 / var(--tw-bg-opacity, 1));
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
-  --tw-text-opacity: 1;
-  color: rgb(237 241 250 / var(--tw-text-opacity, 1));
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-
-.field:focus {
-  --tw-border-opacity: 1;
-  border-color: rgb(200 255 46 / var(--tw-border-opacity, 1));
-}
-
-.label {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  line-height: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  --tw-text-opacity: 1;
-  color: rgb(143 154 179 / var(--tw-text-opacity, 1));
-}
-
 /* ------------------------------------------------------------------ badge */
 
 /* Badge colorato: la tinta arriva da --badge, impostata da una classe badge-* */
@@ -1245,8 +1212,6 @@ video {
   display: none;
 }
 
-/* Superficie standard */
-
 .card {
   border-radius: 0.75rem;
   border-width: 1px;
@@ -1258,8 +1223,6 @@ video {
   --tw-shadow-colored: inset 0 1px 0 0 var(--tw-shadow-color), 0 20px 50px -30px var(--tw-shadow-color);
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
-
-/* Bottone primario: lime pieno, testo scuro */
 
 .btn {
   display: inline-flex;
@@ -1348,8 +1311,6 @@ video {
   color: rgb(200 255 46 / var(--tw-text-opacity, 1));
 }
 
-/* Pulsante quota stile sportsbook */
-
 .odds-btn {
   display: flex;
   flex: 1 1 0%;
@@ -1367,6 +1328,8 @@ video {
   padding-right: 0.75rem;
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(237 241 250 / var(--tw-text-opacity, 1));
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
@@ -1374,8 +1337,7 @@ video {
   transition-duration: 150ms;
 }
 
-.odds-btn,
-  .odds-btn:disabled {
+.odds-btn:disabled {
   --tw-text-opacity: 1;
   color: rgb(237 241 250 / var(--tw-text-opacity, 1));
 }
@@ -1386,8 +1348,7 @@ video {
   background-color: rgb(22 29 46 / var(--tw-bg-opacity, 1));
 }
 
-.odds-btn[aria-pressed="true"],
-  .odds-btn[aria-pressed="true"]:not(:disabled):hover {
+.odds-btn[aria-pressed="true"], .odds-btn[aria-pressed="true"]:not(:disabled):hover {
   --tw-border-opacity: 1;
   border-color: rgb(200 255 46 / var(--tw-border-opacity, 1));
   --tw-bg-opacity: 1;
@@ -1402,10 +1363,6 @@ video {
 .odds-btn[aria-pressed="true"] .odds-label {
   color: rgb(5 7 13 / 0.7);
 }
-
-/* Pillola "live" */
-
-/* Etichetta di sezione */
 
 .eyebrow {
   font-family: var(--font-mono);
@@ -1422,6 +1379,39 @@ video {
   .eyebrow {
     letter-spacing: 1.5px;
   }
+}
+
+.field {
+  width: 100%;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgb(34 43 64 / var(--tw-border-opacity, 1));
+  --tw-bg-opacity: 1;
+  background-color: rgb(5 7 13 / var(--tw-bg-opacity, 1));
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  --tw-text-opacity: 1;
+  color: rgb(237 241 250 / var(--tw-text-opacity, 1));
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.field:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(200 255 46 / var(--tw-border-opacity, 1));
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  --tw-text-opacity: 1;
+  color: rgb(143 154 179 / var(--tw-text-opacity, 1));
 }
 
 .mx-auto {
