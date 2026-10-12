@@ -10,7 +10,10 @@
   "type": "module",
   "exports": {
     ".": "./src/components/index.ts",
-    "./tailwind": "./tailwind.preset.js",
+    "./tailwind": {
+      "types": "./tailwind.preset.d.ts",
+      "default": "./tailwind.preset.js"
+    },
     "./styles.css": "./styles/base.css",
     "./games.css": "./styles/giochi.css"
   },
@@ -19,6 +22,7 @@
     "styles",
     "example",
     "tailwind.preset.js",
+    "tailwind.preset.d.ts",
     "README.md",
     "LICENSE"
   ],
