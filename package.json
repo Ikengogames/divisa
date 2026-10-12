@@ -1,6 +1,6 @@
 {
   "name": "divisa",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Divisa design system: palette, stili e componenti per siti di sport e giochi (Next.js + Tailwind).",
   "license": "MIT",
   "repository": {
