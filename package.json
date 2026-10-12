@@ -2,7 +2,7 @@
   "name": "divisa",
   "version": "0.1.0",
   "description": "Divisa design system: palette, stili e componenti per siti di sport e giochi (Next.js + Tailwind).",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Ikengogames/divisa.git"
@@ -17,11 +17,14 @@
   "files": [
     "src",
     "styles",
+    "example",
     "tailwind.preset.js",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "check": "tsc --noEmit"
+    "check": "tsc --noEmit",
+    "example": "tailwindcss -c example/tailwind.config.mjs -i example/input.css -o example/out.css"
   },
   "peerDependencies": {
     "react": ">=18.3.0",
@@ -39,5 +42,12 @@
     "react": "^19.3.0",
     "tailwindcss": "^3.4.13",
     "typescript": "^5.6.2"
-  }
+  },
+  "keywords": [
+    "design-system",
+    "tailwind",
+    "nextjs",
+    "sport",
+    "games"
+  ]
 }

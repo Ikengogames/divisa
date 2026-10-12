@@ -1,4 +1,4 @@
-/* Divisa · giochi: tavolo, carte e colori di ruolo. Si importa oltre a styles.css, solo dove serve. */
+/* Divisa · giochi: tavolo e carte. I colori di ruolo sono in styles.css. Si importa oltre a styles.css, solo dove serve. */
 
 /* ------------------------------------------------------------------ tavolo da gioco */
 /* Il panno: lo stesso blu notte del sito con un alone verde, come un tavolo illuminato dall'alto */
@@ -10,14 +10,6 @@
   border: 1px solid rgba(45, 224, 143, 0.22);
   box-shadow: 0 0 0 6px #0f1522, 0 0 0 7px #222b40, 0 30px 60px -30px rgba(0, 0, 0, 0.9), inset 0 0 80px rgba(0, 0, 0, 0.45);
 }
-
-/* Colori di ruolo: quelli del calcio, da cambiare per altri sport */
-.role-P { --role: #ffb224; }
-.role-D { --role: #2de08f; }
-.role-C { --role: #38d6ff; }
-.role-A { --role: #ff4d5e; }
-.role-chip { background: color-mix(in srgb, var(--role) 16%, transparent); color: var(--role); border: 1px solid color-mix(in srgb, var(--role) 45%, transparent); }
-.role-bar { background: var(--role); }
 
 /* La carta: un calciatore */
 .pcard {

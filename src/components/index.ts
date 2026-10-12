@@ -1,3 +1,4 @@
+export { Badge, type BadgeTone } from "./Badge";
 export { default as AnimatedNumber } from "./AnimatedNumber";
 export { useConfirm } from "./ConfirmDialog";
 export { default as PasswordInput } from "./PasswordInput";

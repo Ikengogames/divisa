@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Divisa · esempio / example</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:wght@800;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./out.css" />
+  <style>
+    :root { --font-display: "Big Shoulders", sans-serif; --font-body: "Inter", sans-serif; --font-mono: "JetBrains Mono", monospace; }
+    body { font-family: var(--font-body); }
+  </style>
+</head>
+<body class="font-body">
+  <main class="mx-auto flex max-w-5xl flex-col gap-14 px-4 py-12">
+    <header class="page-in">
+      <p class="eyebrow mb-2">Design system · sport e giochi / sport and games</p>
+      <h1 class="font-display text-6xl font-900 uppercase leading-none">Divisa</h1>
+      <p class="mt-3 max-w-2xl text-muted2">Palette, bottoni, badge, carte e tavolo. Questa pagina usa solo le classi del pacchetto. / Palette, buttons, badges, cards and table. This page uses only the package classes.</p>
+    </header>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display text-3xl font-800 uppercase">Palette</h2>
+      <div class="grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-night ring-1 ring-line"></div><p class="font-mono text-xs">night</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-paper ring-1 ring-line"></div><p class="font-mono text-xs">paper</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-panel ring-1 ring-line"></div><p class="font-mono text-xs">panel</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-ink ring-1 ring-line"></div><p class="font-mono text-xs">ink</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-lime"></div><p class="font-mono text-xs">lime</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-green"></div><p class="font-mono text-xs">green</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-red"></div><p class="font-mono text-xs">red</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-amber"></div><p class="font-mono text-xs">amber</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-cyan"></div><p class="font-mono text-xs">cyan</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-cream"></div><p class="font-mono text-xs">cream</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-muted"></div><p class="font-mono text-xs">muted</p></div>
+        <div class="card p-3"><div class="mb-2 h-12 rounded bg-line"></div><p class="font-mono text-xs">line</p></div>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display text-3xl font-800 uppercase">Bottoni / Buttons</h2>
+      <div class="flex flex-wrap items-center gap-3">
+        <button class="btn">Punta</button>
+        <button class="btn-ghost">Annulla</button>
+        <button class="btn" disabled>Disabilitato</button>
+      </div>
+      <div class="flex gap-2 sm:max-w-md">
+        <button class="odds-btn" aria-pressed="false"><span class="odds-label font-mono text-xs uppercase text-muted">+1</span><span class="num font-mono text-lg font-bold">42</span></button>
+        <button class="odds-btn" aria-pressed="true"><span class="odds-label font-mono text-xs uppercase text-muted">+5</span><span class="num font-mono text-lg font-bold">46</span></button>
+        <button class="odds-btn" aria-pressed="false"><span class="odds-label font-mono text-xs uppercase text-muted">+10</span><span class="num font-mono text-lg font-bold">51</span></button>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display text-3xl font-800 uppercase">Badge</h2>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="badge badge-lime">In corso</span>
+        <span class="badge badge-green">Aperto</span>
+        <span class="badge badge-amber">In preparazione</span>
+        <span class="badge badge-red">Scaduto</span>
+        <span class="badge badge-cyan">Info</span>
+        <span class="badge badge-muted">Finita</span>
+      </div>
+      <p class="text-sm text-muted2">Ruoli / Roles</p>
+      <div class="flex flex-wrap items-center gap-2">
+        <span class="role-P role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">P</span>
+        <span class="role-D role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">D</span>
+        <span class="role-C role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">C</span>
+        <span class="role-A role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">A</span>
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display text-3xl font-800 uppercase">Moduli / Forms</h2>
+      <div class="card flex max-w-md flex-col gap-2 p-5">
+        <label for="n" class="label">Nome della squadra / Team name</label>
+        <input id="n" class="field" placeholder="Es. FC Esempio" />
+      </div>
+    </section>
+
+    <section class="flex flex-col gap-4">
+      <h2 class="font-display text-3xl font-800 uppercase">Carte e tavolo / Cards and table</h2>
+      <div class="felt rounded-2xl p-6">
+        <div class="deal grid gap-4 sm:grid-cols-3">
+          <article class="pcard role-A pcard-lead flex flex-col gap-3 p-4 pl-5">
+            <header class="flex items-start gap-3">
+              <span class="role-A role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">A</span>
+              <div class="min-w-0 flex-1"><h3 class="truncate font-display text-2xl font-900 uppercase leading-none">Lautaro</h3><p class="mt-1 font-mono text-xs uppercase text-muted2">Inter</p></div>
+              <p class="num font-mono text-sm font-bold">88</p>
+            </header>
+            <p class="font-mono text-xs uppercase text-lime">Sei in testa</p>
+          </article>
+          <article class="pcard role-C flex flex-col gap-3 p-4 pl-5">
+            <header class="flex items-start gap-3">
+              <span class="role-C role-chip grid h-7 w-7 place-items-center rounded-md font-display text-lg font-900 leading-none">C</span>
+              <div class="min-w-0 flex-1"><h3 class="truncate font-display text-2xl font-900 uppercase leading-none">Barella</h3><p class="mt-1 font-mono text-xs uppercase text-muted2">Inter</p></div>
+              <p class="num font-mono text-sm font-bold">33</p>
+            </header>
+            <p class="font-mono text-xs uppercase text-muted2">Rossi</p>
+          </article>
+          <span class="card-back grid h-24 place-items-center"><span class="grid h-7 w-7 -skew-x-6 place-items-center rounded-md bg-lime font-display text-xl font-900 text-ink">?</span></span>
+        </div>
+        <p class="timer-hot num mt-5 font-display text-5xl font-900">0:07</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.querySelectorAll(".odds-btn").forEach(function (b) {
+      b.addEventListener("click", function () {
+        document.querySelectorAll(".odds-btn").forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+      });
+    });
+  </script>
+</body>
+</html>

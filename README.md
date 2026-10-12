@@ -1,27 +1,31 @@
 # Divisa
 
-Il design system condiviso per i siti di sport e giochi: palette, caratteri, bottoni, animazioni e componenti. Nasce dal Fantabanco e viene usato anche da Pokerasta.
+**English** · [Italiano](#italiano)
 
-## Installazione
+A small design system for sports and games websites: palette, fonts, buttons, badges, cards and React components, for Next.js and Tailwind CSS 3. It started in the Fantabanco and Pokerasta projects.
+
+[Live example page](example/index.html) · MIT license
+
+## English
+
+### Install
 
 ```bash
 npm install github:Ikengogames/divisa
 ```
 
-Servono React 18.3 o superiore e Tailwind CSS 3. `next-auth` serve solo se usi `SessionProvider` o `SignOutButton`.
+Requires React 18.3+ and Tailwind CSS 3. `next-auth` is needed only for `SessionProvider` and `SignOutButton`.
 
-## Uso in un progetto Next.js
+### Set up (Next.js)
 
-1. **`next.config.ts`**: il pacchetto è scritto in TypeScript, quindi va compilato insieme all'app.
+1. `next.config.ts` — the package is shipped as TypeScript, so Next must compile it:
 
 ```ts
-const nextConfig = {
-  transpilePackages: ["divisa"],
-};
+const nextConfig = { transpilePackages: ["divisa"] };
 export default nextConfig;
 ```
 
-2. **`tailwind.config.ts`**: il preset porta palette e font. Tailwind deve leggere anche i componenti del pacchetto, per generare le loro classi.
+2. `tailwind.config.ts` — the preset adds the palette and fonts, and Tailwind must also read the package components:
 
 ```ts
 import divisa from "divisa/tailwind";
@@ -35,7 +39,7 @@ const config: Config = {
 export default config;
 ```
 
-3. **`src/app/globals.css`**: gli stili di base vanno importati prima delle direttive di Tailwind. `games.css` serve solo ai progetti con tavoli e carte.
+3. `src/app/globals.css` — import the styles before the Tailwind directives. `games.css` is only for projects with tables and cards:
 
 ```css
 @import "divisa/styles.css";
@@ -46,7 +50,7 @@ export default config;
 @tailwind utilities;
 ```
 
-4. **`src/app/layout.tsx`**: il preset legge tre variabili per i font. Le definisce l'app con `next/font`, come nel Fantabanco e in Pokerasta.
+4. `src/app/layout.tsx` — define three font variables with `next/font`:
 
 ```tsx
 import { Big_Shoulders, Inter, JetBrains_Mono } from "next/font/google";
@@ -57,82 +61,114 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="it" className={`${display.variable} ${body.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable}`}>
       <body className="font-body">{children}</body>
     </html>
   );
 }
 ```
 
-## Palette
+### What is inside
 
-| Token | Colore | Uso |
-| --- | --- | --- |
-| `night` | `#090D16` | sfondo pagina |
-| `paper` | `#0F1522` | card |
-| `panel` | `#161D2E` | card in evidenza |
-| `ink` | `#05070D` | campi di input, tab, aree incassate |
-| `line` | `#222B40` | bordi |
-| `cream` | `#EDF1FA` | testo |
-| `muted` / `muted2` | `#8F9AB3` / `#A0AAC0` | testo secondario |
-| `lime` / `lime2` | `#C8FF2E` / `#DDFF7A` | accento principale, azioni |
-| `green` | `#2DE08F` | esito positivo |
-| `red` | `#FF4D5E` | errori, tempo che scade |
-| `amber` | `#FFB224` | avvisi |
-| `cyan` | `#38D6FF` | informazioni |
+| Area | Contents |
+| --- | --- |
+| Palette | `night`, `paper`, `panel`, `ink`, `line`, `cream`, `muted`, `muted2`, `lime`, `lime2`, `green`, `red`, `amber`, `cyan` |
+| Buttons | `btn`, `btn-ghost`, `odds-btn` (use `aria-pressed`) |
+| Surfaces | `card`, `card-hover` |
+| Forms | `field`, `label` |
+| Badges | `badge` + `badge-lime`, `-green`, `-red`, `-amber`, `-cyan`, `-muted` |
+| Roles | `role-P`, `role-D`, `role-C`, `role-A` with `role-chip` or `role-bar` |
+| Motion | `page-in`, `stagger`, `reveal`, `live-dot`, `bump`, `timer-hot` |
+| Games (`games.css`) | `felt` (table), `pcard` (card), `card-back`, `deal` |
 
-## Classi di stile
+React components, imported from `divisa`:
 
-- **Bottoni**: `btn` (primario), `btn-ghost` (secondario), `odds-btn` (scelta a quota, con `aria-pressed`).
-- **Superfici**: `card` (riquadro standard), `card-hover` (si solleva al passaggio).
-- **Moduli**: `field` (campo di testo) e `label` (etichetta sopra il campo).
-- **Testi**: `eyebrow` (titolo di sezione in maiuscolo), `num` (cifre allineate).
-- **Movimento**: `page-in`, `stagger`, `reveal`, `live-dot`, `bump` (un numero che cambia), `timer-hot` (ultimi secondi).
+| Component | What it does |
+| --- | --- |
+| `Badge` | Coloured label: `<Badge tone="green">Open</Badge>` |
+| `RoleChip`, `PlayerCard`, `CardBack` | Role badge and cards for athletes |
+| `Toaster`, `toast()` | Short messages; mount `<Toaster />` once in the layout |
+| `useConfirm()` | Confirmation dialog in the site style |
+| `PasswordInput` | Password field with a show/hide button |
+| `ScrollReveal` | Content that appears while scrolling |
+| `AnimatedNumber` | Number that counts up to a value |
+| `SessionProvider`, `SignOutButton` | `next-auth` helpers |
 
-Nel file `styles/giochi.css`: `felt` (il tavolo), `pcard` (carta di un atleta, con `role-P`, `role-D`, `role-C`, `role-A`), `card-back` (dorso coperto), `deal` (carte che arrivano una dopo l'altra).
-
-## Componenti
-
-Si importano tutti da `divisa`:
-
-```tsx
-import { Toaster, toast, useConfirm, PlayerCard } from "divisa";
-```
-
-- **`Toaster`** e **`toast(testo, "ok" | "err")`**: messaggi brevi. Il `Toaster` si monta una volta nel layout. Di default sta sopra una barra in basso alta 84 px sul telefono: se il progetto non ne ha una, passa `className="bottom-6"`.
-- **`useConfirm()`**: finestra di conferma nello stile del sito, al posto di quella del browser.
-
-```tsx
-const [ask, dialog] = useConfirm();
-if (await ask("Chiudere subito le puntate?", { danger: true })) { /* ... */ }
-return <>{dialog}…</>;
-```
-
-- **`AnimatedNumber`**: numero che scorre fino al valore (`value`, `fromZero`, `duration`).
-- **`ScrollReveal`**: fa comparire il contenuto allo scorrimento; con `stagger` i figli arrivano uno dopo l'altro. Per il caso senza JavaScript serve un `<noscript>` con lo stile di base nel layout, come nelle app esistenti.
-- **`PasswordInput`**: campo password con l'occhio per vederla. Accetta le stesse props di `<input>`.
-- **`SessionProvider`** e **`SignOutButton`**: integrazione con `next-auth`. Il pulsante di uscita porta a `/login`; con `callbackUrl` puoi indicare un'altra pagina.
-- **`PlayerCard`**, **`RoleChip`**, **`CardBack`**: carte di atleti per fantacalcio e giochi a carte. Il tipo `Athlete` ha nome, squadra, ruolo (`P`, `D`, `C`, `A`) e prezzo; le etichette dei ruoli sono in `ROLE_NAME`.
-
-## Aggiornare
-
-Quando il design system cambia, nel progetto basta:
+### Update
 
 ```bash
 npm update divisa
 ```
 
-Le modifiche valgono in tutti i progetti che lo usano, quindi conviene cambiarlo solo con una verifica sui progetti principali.
-
-## Sviluppo
+### Develop
 
 ```bash
 npm install
-npm run check
+npm run check     # type check
+npm run example   # rebuild example/out.css
 ```
 
-`npm run check` controlla i tipi dei componenti.
+## Italiano
 
-## Licenza
+Un piccolo design system per siti di sport e giochi: palette, caratteri, bottoni, badge, carte e componenti React, per Next.js e Tailwind CSS 3. Nasce dai progetti Fantabanco e Pokerasta.
 
-Non ancora scelta: fino ad allora il codice è di uso privato.
+[Pagina di esempio](example/index.html) · Licenza MIT
+
+### Installazione
+
+```bash
+npm install github:Ikengogames/divisa
+```
+
+Servono React 18.3 o superiore e Tailwind CSS 3. `next-auth` serve solo per `SessionProvider` e `SignOutButton`.
+
+### Configurazione (Next.js)
+
+I quattro passaggi sono quelli della sezione inglese qui sopra, con gli stessi file:
+
+1. **`next.config.ts`**: aggiungi `transpilePackages: ["divisa"]`, perché il pacchetto è in TypeScript e va compilato con l'app.
+2. **`tailwind.config.ts`**: usa `presets: [divisa]` e aggiungi `./node_modules/divisa/src/**/*.{ts,tsx}` ai `content`, così Tailwind genera anche le classi dei componenti.
+3. **`src/app/globals.css`**: importa `divisa/styles.css` (e `divisa/games.css` per tavolo e carte) prima delle direttive `@tailwind`.
+4. **`src/app/layout.tsx`**: definisci con `next/font` le variabili `--font-display`, `--font-body` e `--font-mono`.
+
+### Cosa c'è dentro
+
+| Area | Contenuto |
+| --- | --- |
+| Palette | `night`, `paper`, `panel`, `ink`, `line`, `cream`, `muted`, `muted2`, `lime`, `lime2`, `green`, `red`, `amber`, `cyan` |
+| Bottoni | `btn`, `btn-ghost`, `odds-btn` (con `aria-pressed`) |
+| Superfici | `card`, `card-hover` |
+| Moduli | `field`, `label` |
+| Badge | `badge` con `badge-lime`, `-green`, `-red`, `-amber`, `-cyan`, `-muted` |
+| Ruoli | `role-P`, `role-D`, `role-C`, `role-A` con `role-chip` o `role-bar` |
+| Movimento | `page-in`, `stagger`, `reveal`, `live-dot`, `bump`, `timer-hot` |
+| Giochi (`games.css`) | `felt` (tavolo), `pcard` (carta), `card-back`, `deal` |
+
+| Componente | Cosa fa |
+| --- | --- |
+| `Badge` | Etichetta colorata: `<Badge tone="green">Aperto</Badge>` |
+| `RoleChip`, `PlayerCard`, `CardBack` | Badge di ruolo e carte di atleti |
+| `Toaster`, `toast()` | Messaggi brevi; monta `<Toaster />` una volta nel layout |
+| `useConfirm()` | Finestra di conferma nello stile del sito |
+| `PasswordInput` | Campo password con l'occhio |
+| `ScrollReveal` | Contenuto che compare allo scorrimento |
+| `AnimatedNumber` | Numero che scorre fino al valore |
+| `SessionProvider`, `SignOutButton` | Strumenti per `next-auth` |
+
+### Aggiornamento
+
+```bash
+npm update divisa
+```
+
+### Sviluppo
+
+```bash
+npm install
+npm run check     # controllo dei tipi
+npm run example   # ricompila example/out.css
+```
+
+## License / Licenza
+
+[MIT](LICENSE) © 2026 Ikengogames
