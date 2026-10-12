@@ -1,0 +1,264 @@
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background-color: #090d16;
+  color: #edf1fa;
+}
+
+body {
+  background-image:
+    radial-gradient(900px 500px at 85% -10%, rgba(200, 255, 46, 0.07), transparent 60%),
+    radial-gradient(700px 500px at -10% 10%, rgba(56, 214, 255, 0.06), transparent 60%);
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: #c8ff2e;
+  color: #05070d;
+}
+
+:focus-visible {
+  outline: 2px solid #c8ff2e;
+  outline-offset: 2px;
+}
+
+input,
+select,
+textarea {
+  color-scheme: dark;
+}
+
+/* Cifre allineate: quote e crediti */
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+@layer components {
+  /* Superficie standard */
+  .card {
+    @apply rounded-xl border border-line bg-paper shadow-card;
+  }
+
+  /* Bottone primario: lime pieno, testo scuro */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-lime px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-ink transition hover:bg-lime2 hover:shadow-glow active:scale-[.98] disabled:opacity-40 disabled:hover:shadow-none;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-line bg-panel/60 px-5 py-3 font-display text-xl font-800 uppercase tracking-wide text-cream transition hover:border-lime hover:text-lime;
+  }
+
+  /* Pulsante quota stile sportsbook */
+  .odds-btn {
+    @apply flex flex-1 flex-col items-center justify-center gap-0.5 rounded-lg border border-line bg-ink px-3 py-3 transition;
+  }
+  .odds-btn,
+  .odds-btn:disabled {
+    @apply text-cream;
+  }
+  .odds-btn:not(:disabled):hover {
+    @apply border-lime/60 bg-panel;
+  }
+  .odds-btn[aria-pressed="true"],
+  .odds-btn[aria-pressed="true"]:not(:disabled):hover {
+    @apply border-lime bg-lime text-ink shadow-glow;
+  }
+  .odds-btn[aria-pressed="true"] .odds-label {
+    @apply text-ink/70;
+  }
+
+  /* Pillola "live" */
+  .live-dot {
+    @apply inline-block h-2 w-2 animate-pulseDot rounded-full bg-lime;
+  }
+
+  /* Etichetta di sezione */
+  .eyebrow {
+    @apply font-mono text-xs font-semibold uppercase tracking-[3px] text-lime;
+  }
+}
+
+/* ------------------------------------------------------------------ animazioni */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pop {
+  0% { transform: scale(0.94); }
+  55% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(200, 255, 46, 0.5), 0 8px 30px -8px rgba(200, 255, 46, 0.35); }
+  50% { box-shadow: 0 0 0 1px rgba(200, 255, 46, 0.8), 0 8px 44px -6px rgba(200, 255, 46, 0.6); }
+}
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-40px, 30px, 0) scale(1.08); }
+}
+@keyframes shine {
+  from { transform: translateX(-120%) skewX(-18deg); }
+  to { transform: translateX(260%) skewX(-18deg); }
+}
+@keyframes growX {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes growY {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* Ogni pagina entra con una dissolvenza (i template di Next si rimontano a ogni navigazione) */
+.page-in {
+  animation: rise 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+/* Elementi figli che compaiono uno dopo l'altro */
+.stagger > * {
+  animation: rise 0.55s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.04s; }
+.stagger > *:nth-child(2) { animation-delay: 0.1s; }
+.stagger > *:nth-child(3) { animation-delay: 0.16s; }
+.stagger > *:nth-child(4) { animation-delay: 0.22s; }
+.stagger > *:nth-child(5) { animation-delay: 0.28s; }
+.stagger > *:nth-child(6) { animation-delay: 0.34s; }
+.stagger > *:nth-child(7) { animation-delay: 0.4s; }
+.stagger > *:nth-child(8) { animation-delay: 0.46s; }
+.stagger > *:nth-child(n + 9) { animation-delay: 0.5s; }
+
+/* Comparsa allo scorrimento (la classe in-view la mette ScrollReveal) */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.reveal.in-view { opacity: 1; transform: none; }
+.reveal-stagger:not(.in-view) > * { opacity: 0; }
+.reveal-stagger.in-view > * { animation: rise 0.65s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.reveal-stagger.in-view > *:nth-child(1) { animation-delay: 0.02s; }
+.reveal-stagger.in-view > *:nth-child(2) { animation-delay: 0.1s; }
+.reveal-stagger.in-view > *:nth-child(3) { animation-delay: 0.18s; }
+.reveal-stagger.in-view > *:nth-child(4) { animation-delay: 0.26s; }
+.reveal-stagger.in-view > *:nth-child(5) { animation-delay: 0.34s; }
+.reveal-stagger.in-view > *:nth-child(n + 6) { animation-delay: 0.4s; }
+
+/* Messaggi di esito */
+[role="status"] { animation: pop 0.35s ease-out backwards; }
+
+/* Schede interattive */
+.card-hover {
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  border-color: rgba(200, 255, 46, 0.45);
+  box-shadow: 0 18px 40px -22px rgba(200, 255, 46, 0.35);
+}
+
+/* Pulsante primario: riflesso che attraversa al passaggio */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  transform: translateX(-120%) skewX(-18deg);
+  pointer-events: none;
+}
+.btn:not(:disabled):hover::after { animation: shine 0.75s ease; }
+
+/* Quote: sollevamento al passaggio, pressione al tocco, "pop" quando si seleziona */
+.odds-btn { transition: transform 0.15s ease, border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease; }
+/* solo con il mouse: sul telefono l'effetto resterebbe "appiccicato" dopo il tocco */
+@media (hover: hover) {
+  .odds-btn:not(:disabled):hover { transform: translateY(-2px); }
+}
+.odds-btn:not(:disabled):active { transform: scale(0.97); }
+.odds-btn[aria-pressed="true"] { animation: pop 0.3s ease-out, glowPulse 2.4s ease-in-out 0.3s infinite; }
+
+/* Dettagli (FAQ, archivio): il contenuto si apre con una dissolvenza */
+details[open] > *:not(summary) { animation: fade 0.35s ease backwards; }
+
+/* Grafici: le barre crescono alla comparsa */
+.bar-x { transform-origin: left center; animation: growX 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.bar-y { transform-origin: center bottom; animation: growY 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+
+/* Decorazioni lente */
+.float { animation: floaty 6s ease-in-out infinite; }
+.drift { animation: drift 14s ease-in-out infinite; }
+
+/* Chi preferisce meno movimento non vede animazioni */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; }
+}
+
+/* ------------------------------------------------------------------ telefono */
+/* tocco: niente ritardo né zoom col doppio tocco sui comandi */
+a, button, summary, select, input, label { touch-action: manipulation; }
+
+.no-scrollbar { scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }
+
+.mobile-sheet { animation: sheetUp 0.22s ease-out; }
+@keyframes sheetUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (max-width: 767px) {
+  /* Sotto i 16px Safari su iPhone ingrandisce la pagina quando si tocca un campo */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="file"]), select, textarea { font-size: 16px !important; min-height: 44px; }
+  /* Bersagli da toccare: almeno 44px */
+  button, .btn, .btn-ghost, summary { min-height: 44px; }
+  button { min-width: 44px; }
+  /* Lo spazio della barra in basso non deve coprire l'ultimo contenuto */
+  html { scroll-padding-bottom: 96px; }
+}
+@media (prefers-reduced-motion: reduce) { .mobile-sheet { animation: none; } }
+.toast { animation: sheetUp 0.22s ease-out; }
+@media (prefers-reduced-motion: reduce) { .toast { animation: none; } }
+
+/* ------------------------------------------------------------------ accessibilità */
+/* Collegamento per chi usa la tastiera: compare solo quando riceve il focus */
+.skip-link { position: absolute; left: 8px; top: -64px; z-index: 100; border-radius: 8px; background: #c8ff2e; color: #05070d; padding: 12px 16px; font-weight: 700; }
+.skip-link:focus { top: 8px; }
+/* I riquadri di scelta contengono un radio nascosto: il focus va mostrato sul riquadro */
+label:has(input.sr-only:focus-visible) { outline: 2px solid #c8ff2e; outline-offset: 2px; }
+/* Nessun testo sotto i 12px (le etichette da 10 e 11px erano faticose sul telefono) */
+.text-\[10px\], .text-\[11px\] { font-size: 12px !important; }
+@media (max-width: 767px) {
+  /* le maiuscole molto spaziate si leggono male su schermi piccoli */
+  .tracking-\[2px\], .tracking-\[3px\], .tracking-\[4px\] { letter-spacing: 1.5px !important; }
+}
+
+/* ------------------------------------------------------------------ moduli e numeri */
+/* Puntata appena salita */
+@keyframes bump { 0% { transform: scale(1.25); color: #c8ff2e; } 100% { transform: scale(1); } }
+.bump { animation: bump 0.45s ease-out; display: inline-block; }
+
+/* Ultimi secondi del timer */
+@keyframes tick { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+.timer-hot { color: #ff4d5e; animation: tick 1s ease-in-out infinite; }
+
+/* Campi dei moduli */
+.field { @apply w-full rounded border border-line bg-ink px-4 py-3 text-cream outline-none focus:border-lime; }
+.label { @apply font-mono text-xs uppercase tracking-wide text-muted; }

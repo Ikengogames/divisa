@@ -1,0 +1,55 @@
+/* Divisa · giochi: tavolo, carte e colori di ruolo. Si importa oltre a styles.css, solo dove serve. */
+
+/* ------------------------------------------------------------------ tavolo da gioco */
+/* Il panno: lo stesso blu notte del sito con un alone verde, come un tavolo illuminato dall'alto */
+.felt {
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(45, 224, 143, 0.13), transparent 62%),
+    radial-gradient(80% 60% at 50% 110%, rgba(200, 255, 46, 0.06), transparent 70%),
+    #0b1420;
+  border: 1px solid rgba(45, 224, 143, 0.22);
+  box-shadow: 0 0 0 6px #0f1522, 0 0 0 7px #222b40, 0 30px 60px -30px rgba(0, 0, 0, 0.9), inset 0 0 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Colori di ruolo: quelli del calcio, da cambiare per altri sport */
+.role-P { --role: #ffb224; }
+.role-D { --role: #2de08f; }
+.role-C { --role: #38d6ff; }
+.role-A { --role: #ff4d5e; }
+.role-chip { background: color-mix(in srgb, var(--role) 16%, transparent); color: var(--role); border: 1px solid color-mix(in srgb, var(--role) 45%, transparent); }
+.role-bar { background: var(--role); }
+
+/* La carta: un calciatore */
+.pcard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  border: 1px solid #222b40;
+  background: linear-gradient(160deg, color-mix(in srgb, var(--role) 14%, #161d2e) 0%, #0f1522 55%);
+  box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.05) inset, 0 18px 40px -24px rgba(0, 0, 0, 0.9);
+}
+.pcard::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--role); }
+.pcard-lead { border-color: #c8ff2e; animation: glowPulse 2.4s ease-in-out infinite; }
+
+/* Il dorso della carta coperta */
+.card-back {
+  border-radius: 12px;
+  border: 1px solid rgba(200, 255, 46, 0.4);
+  background:
+    repeating-linear-gradient(45deg, rgba(200, 255, 46, 0.1) 0 6px, transparent 6px 12px),
+    repeating-linear-gradient(-45deg, rgba(200, 255, 46, 0.1) 0 6px, transparent 6px 12px),
+    #0f1522;
+}
+
+/* Le carte arrivano sul tavolo una dopo l'altra */
+@keyframes deal {
+  from { opacity: 0; transform: translateY(-26px) rotate(-5deg) scale(0.92); }
+  to { opacity: 1; transform: none; }
+}
+.deal > * { animation: deal 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) backwards; }
+.deal > *:nth-child(2) { animation-delay: 0.08s; }
+.deal > *:nth-child(3) { animation-delay: 0.16s; }
+.deal > *:nth-child(4) { animation-delay: 0.24s; }
+.deal > *:nth-child(5) { animation-delay: 0.32s; }
+.deal > *:nth-child(n + 6) { animation-delay: 0.4s; }
+
